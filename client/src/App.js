@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Container, AppBar, Typography, Grow, Grid } from "@material-ui/core";
 import camera from "./images/camera.png";
-import Posts from "./components/Posts/Posts";
+import AllPosts from "./components/Posts/AllPosts";
 import Form from "./components/Form/Form";
 
 import { useDispatch } from "react-redux";
 
-import useStyles from "./styles";
-import { getPosts } from "./actions/posts";
+import useStyles from "./stylesApp";
+import { getPosts } from "./actions/postsActions";
 
 const App = () => {
   const [currentId, setCurrentId] = useState(null);
@@ -36,7 +36,7 @@ const App = () => {
             spacing={3}
           >
             <Grid item xs={12} sm={7}>
-              <Posts setCurrentId={setCurrentId} />
+              <AllPosts setCurrentId={setCurrentId} />
             </Grid>
 
             <Grid item xs={12} sm={4}>

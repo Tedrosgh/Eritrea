@@ -1,7 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-import postRoutes from "./routes/posts.js";
+import postRoutes from "./routes/postsRoutes.js";
 
 const app = express();
 

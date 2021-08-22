@@ -1,13 +1,13 @@
 import React from "react";
 import Post from "./Post/Post";
-import useStyles from "./styles";
+import useStyles from "./stylesAllPosts";
 import { useSelector } from "react-redux";
 
 import { Grid, CircularProgress } from "@material-ui/core";
 
-const Posts = ({ setCurrentId }) => {
+const AllPosts = ({ setCurrentId }) => {
   const classes = useStyles();
-  const posts = useSelector((state) => state.posts);
+  const posts = useSelector((state) => state.postReducer);
   console.log(posts);
 
   return !posts.length ? (
@@ -28,4 +28,4 @@ const Posts = ({ setCurrentId }) => {
   );
 };
 
-export default Posts;
+export default AllPosts;
