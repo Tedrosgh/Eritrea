@@ -115,7 +115,7 @@ const Form = ({ currentId, setCurrentId }) => {
           type="submit"
           fullWidth
         >
-          Submit
+          {currentId ? `Update ` : `Submit `}
         </Button>
         <Button
           variant="contained"

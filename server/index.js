@@ -14,7 +14,7 @@ app.use(cors());
 app.use("/posts", postRoutes);
 
 const CONNECTION_URL =
-  "mongodb+srv://dilshodDCI:dilshodDCI123@cluster0.ldws3.mongodb.net/imageboard46-2?retryWrites=true&w=majority";
+  "mongodb+srv://dilshodDCI:dilshodDCI123@cluster0.ldws3.mongodb.net/imageboard46-1?retryWrites=true&w=majority";
 
 //Add server port
 const PORT = process.env.PORT || 5000;

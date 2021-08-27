@@ -8,7 +8,7 @@ import { Grid, CircularProgress } from "@material-ui/core";
 const AllPosts = ({ setCurrentId }) => {
   const classes = useStyles();
   const posts = useSelector((state) => state.postReducer);
-  console.log(posts);
+  console.log("All posts from global state: ", posts);
 
   return !posts.length ? (
     <CircularProgress />
