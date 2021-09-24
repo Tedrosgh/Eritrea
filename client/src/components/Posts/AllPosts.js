@@ -1,14 +1,15 @@
 import React from "react";
 import Post from "./Post/Post";
-import useStyles from "./stylesAllPosts";
 import { useSelector } from "react-redux";
 
+import useStyles from "./stylesAllPosts";
 import { Grid, CircularProgress } from "@material-ui/core";
 
 const AllPosts = ({ setCurrentId }) => {
-  const classes = useStyles();
+  const classes = useStyles(); //classes.container
+
   const posts = useSelector((state) => state.postReducer);
-  console.log("All posts from global state: ", posts);
+  console.log("All posts: ", posts);
 
   return !posts.length ? (
     <CircularProgress />
@@ -21,7 +22,7 @@ const AllPosts = ({ setCurrentId }) => {
     >
       {posts.map((post) => (
         <Grid key={post._id} item xs={12} sm={6} md={6}>
-          <Post setCurrentId={setCurrentId} post={post} />
+          <Post post={post} setCurrentId={setCurrentId} />
         </Grid>
       ))}
     </Grid>

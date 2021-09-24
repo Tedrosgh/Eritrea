@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import useStyles from "./stylesForm";
 import { TextField, Button, Typography, Paper } from "@material-ui/core";
 import FileBase from "react-file-base64";
+
 import { useDispatch, useSelector } from "react-redux";
 import { createPost, updatePost } from "../../actions/postsActions";
 
-//GET THE CURRENT ID
 const Form = ({ currentId, setCurrentId }) => {
+  const user = JSON.parse(localStorage.getItem("profile"));
+
   const [postData, setPostData] = useState({
-    creator: "",
     title: "",
     message: "",
     tags: "",
@@ -16,8 +17,10 @@ const Form = ({ currentId, setCurrentId }) => {
   });
 
   const post = useSelector((state) =>
-    currentId ? state.postReducer.find((p) => p._id === currentId) : null
+    currentId ? state.posts.find((p) => p._id === currentId) : null
   );
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (post) {
@@ -25,16 +28,16 @@ const Form = ({ currentId, setCurrentId }) => {
     }
   }, [post]);
 
-  const dispatch = useDispatch();
   const classes = useStyles();
 
   const handleSubmit = (e) => {
-    console.log("I am handle submit");
     e.preventDefault();
     if (currentId) {
-      dispatch(updatePost(currentId, postData));
+      dispatch(
+        updatePost(currentId, { ...postData, name: user?.result?.name })
+      );
     } else {
-      dispatch(createPost(postData));
+      dispatch(createPost({ ...postData, name: user?.result?.name }));
     }
     clear();
   };
@@ -42,13 +45,23 @@ const Form = ({ currentId, setCurrentId }) => {
   const clear = () => {
     setCurrentId(null);
     setPostData({
-      creator: "",
       title: "",
       message: "",
       tags: "",
       selectedFile: "",
     });
   };
+
+  if (!user?.result?.name) {
+    //Please sign in
+    return (
+      <Paper className={classes.paper}>
+        <Typography variant="h6" align="center">
+          Please Sign In to create your own cards and like other's cards
+        </Typography>
+      </Paper>
+    );
+  }
 
   return (
     <Paper className={classes.paper}>
@@ -58,11 +71,11 @@ const Form = ({ currentId, setCurrentId }) => {
         className={`${classes.form} ${classes.root}`}
         onSubmit={handleSubmit}
       >
-        <Typography variant="h6">
-          {currentId ? `Editing ` : `Creating `} Image Card
+        <Typography variant="h5">
+          {" "}
+          {currentId ? `Editing` : `Creating`} Image Card
         </Typography>
-
-        <TextField
+        {/* <TextField
           name="creator"
           variant="outlined"
           label="Creator"
@@ -71,11 +84,11 @@ const Form = ({ currentId, setCurrentId }) => {
           onChange={(e) =>
             setPostData({ ...postData, creator: e.target.value })
           }
-        />
+        /> */}
         <TextField
           name="title"
           variant="outlined"
-          label="title"
+          label="Title"
           fullWidth
           value={postData.title}
           onChange={(e) => setPostData({ ...postData, title: e.target.value })}
@@ -109,6 +122,7 @@ const Form = ({ currentId, setCurrentId }) => {
             }
           />
         </div>
+
         <Button
           className={classes.buttonSubmit}
           variant="contained"
@@ -117,8 +131,9 @@ const Form = ({ currentId, setCurrentId }) => {
           type="submit"
           fullWidth
         >
-          {currentId ? `Update ` : `Submit `}
+          Submit
         </Button>
+
         <Button
           variant="contained"
           color="secondary"
