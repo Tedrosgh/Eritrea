@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
 app.use("/posts", postRoutes);
 app.use("/user", userRoutes);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8000;
 
 mongoose
   .connect(process.env.CONNECTION_URL, {
