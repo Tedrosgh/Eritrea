@@ -4,6 +4,7 @@ import cors from "cors";
 import postRoutes from "./routes/postsRoutes.js";
 import dotenv from "dotenv";
 import userRoutes from "./routes/users.js";
+import mezmursRouter from "./routes/mezmurs.js";
 
 const app = express();
 dotenv.config();
@@ -15,11 +16,12 @@ app.use(cors());
 
 //http://localhost:5000/posts
 app.get("/", (req, res) => {
-  res.send("Hello World!!");
+  res.send("Hello World!!, That is the new idea");
 });
 
 app.use("/posts", postRoutes);
 app.use("/user", userRoutes);
+app.use("/mezmur", mezmursRouter);
 
 const PORT = process.env.PORT || 8000;
 

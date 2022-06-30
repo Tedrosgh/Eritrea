@@ -5,6 +5,7 @@ import {
   UPDATE,
   DELETE,
   LIKE,
+  FETCH_ONE,
 } from "../constants/actionTypes";
 
 export const getPosts = () => async (dispatch) => {
@@ -47,6 +48,33 @@ export const likePostAction = (id) => async (dispatch) => {
   try {
     const { data } = await api.likePost(id);
     dispatch({ type: LIKE, payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const getPostsmezmur = () => async (dispatch) => {
+  try {
+    const { data } = await api.fetchPostsmezmur();
+    dispatch({ type: FETCH_ALL, payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const createPostsmezmur = (post) => async (dispatch) => {
+  try {
+    const { data } = await api.createPostmezmur(post);
+    dispatch({ type: CREATE, payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const getSingleMezmur = (id) => async (dispatch) => {
+  try {
+    const { data } = await api.fetchSingleMezmur(id);
+    dispatch({ type: FETCH_ONE, payload: data });
   } catch (error) {
     console.log(error.message);
   }

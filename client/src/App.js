@@ -5,6 +5,10 @@ import useStyles from "./stylesApp";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home/Home";
 import Auth from "./components/Auth/Auth";
+import Mezmur from "./pages/mezmur/Mezmur.js";
+import Add_new_mezmur from "./pages/mezmur/Add_new_mezmur";
+import MezmurList from "./pages/mezmur/MezmurList";
+import SingleMezmur from "./pages/mezmur/SingleMezmur";
 
 const App = () => {
   //const [currentId, setCurrentId] = useState(null);
@@ -18,6 +22,10 @@ const App = () => {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/auth" exact component={Auth} />
+          <Route path="/mezmur" exact component={Mezmur} />
+          <Route path="/mezmur/addmezmur" exact component={Add_new_mezmur} />
+          <Route path="/mezmur/list" exact component={MezmurList}></Route>
+          <Route path="/mezmur/:id" exact component={SingleMezmur}></Route>
         </Switch>
       </Container>
     </BrowserRouter>

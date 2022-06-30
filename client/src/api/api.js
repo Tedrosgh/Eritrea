@@ -3,6 +3,7 @@ import axios from "axios";
 //const url = "http://localhost:5000/posts";
 
 const API = axios.create({ baseURL: "http://localhost:8000" });
+//const APIM = axios.create({ baseURL: "http://localhost:8000"});
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("profile")) {
@@ -14,8 +15,12 @@ API.interceptors.request.use((req) => {
 });
 
 export const fetchPosts = () => API.get("/posts");
+export const fetchPostsmezmur = () => API.get("/mezmur");
 
 export const createPost = (newPost) => API.post("/posts", newPost);
+export const createPostmezmur = (newPost) => API.post("/mezmur", newPost);
+
+export const fetchSingleMezmur = (id) => API.get(`/mezmur/${id}`);
 
 export const updatePost = (id, updatePost) =>
   API.patch(`/posts/${id}`, updatePost);
