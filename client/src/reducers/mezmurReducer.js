@@ -1,4 +1,4 @@
-import mezmursRouter from "../../../server/routes/mezmurs";
+// import mezmursRouter from "../../../server/routes/mezmurs";
 import {
     FETCH_ALL,
     FETCH_ONE,
@@ -16,18 +16,18 @@ import {
       case CREATE:
         return [...mezmurs, action.payload];
       case FETCH_ONE:
-        return mezmurs.map((post)=>
-        post._id === action.payload._id ? action.payload : post
+        return mezmurs.map((mezmur)=>
+        mezmur._id === action.payload._id ? action.payload : mezmur
         )
       case UPDATE:
-        return mezmurs.map((post) =>
-          post._id === action.payload._id ? action.payload : post
+        return mezmurs.map((mezmur) =>
+          mezmur._id === action.payload._id ? action.payload : mezmur
         );
       case DELETE:
-        return mezmurs.filter((post) => post._id !== action.payload);
+        return mezmurs.filter((mezmur) => mezmur._id !== action.payload);
       case LIKE:
-        return mezmurs.map((post) =>
-          post._id === action.payload._id ? action.payload : post
+        return mezmurs.map((mezmur) =>
+          mezmur._id === action.payload._id ? action.payload : mezmur
         );
       default:
         return mezmurs;

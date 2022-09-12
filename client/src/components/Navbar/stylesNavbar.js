@@ -1,5 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { deepPurple } from "@material-ui/core/colors";
+import { deepPurple, red } from "@material-ui/core/colors";
+import { borderRadius, style } from "@mui/system";
 
 export default makeStyles((theme) => ({
   appBar: {
@@ -14,6 +15,8 @@ export default makeStyles((theme) => ({
   heading: {
     color: "rgba(0,183,255, 1)",
     textDecoration: "none",
+    border: "1px solid rgba(0,183,255, 1)",
+    borderRadius: "5%"
   },
   image: {
     marginLeft: "15px",
@@ -31,6 +34,7 @@ export default makeStyles((theme) => ({
   userName: {
     display: "flex",
     alignItems: "center",
+    color: "rgba(0,183,255, 1)"
   },
   brandContainer: {
     display: "flex",
@@ -38,6 +42,7 @@ export default makeStyles((theme) => ({
   },
   purple: {
     color: theme.palette.getContrastText(deepPurple[500]),
-    backgroundColor: deepPurple[500],
+    backgroundColor: "rgba(0,183,255, 1)"
+    //backgroundColor: deepPurple[500],
   },
 }));

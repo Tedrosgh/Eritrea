@@ -73,7 +73,6 @@ const Form = ({ currentId, setCurrentId }) => {
         onSubmit={handleSubmit}
       >
         <Typography variant="h5">
-          {" "}
           {currentId ? `Editing` : `Creating`} Image Card
         </Typography>
         {/* <TextField
@@ -85,7 +84,7 @@ const Form = ({ currentId, setCurrentId }) => {
           onChange={(e) =>
             setPostData({ ...postData, creator: e.target.value })
           }
-        /> */}
+        />  */}
         <TextField
           name="title"
           variant="outlined"

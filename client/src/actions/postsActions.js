@@ -53,7 +53,7 @@ export const likePostAction = (id) => async (dispatch) => {
   }
 };
 
-export const getPostsmezmur = () => async (dispatch) => {
+export const getMezmurs = () => async (dispatch) => {
   try {
     const { data } = await api.fetchPostsmezmur();
     dispatch({ type: FETCH_ALL, payload: data });
@@ -62,9 +62,9 @@ export const getPostsmezmur = () => async (dispatch) => {
   }
 };
 
-export const createPostsmezmur = (post) => async (dispatch) => {
+export const addMezmur = (mezmur) => async (dispatch) => {
   try {
-    const { data } = await api.createPostmezmur(post);
+    const { data } = await api.addnMezmur(mezmur);
     dispatch({ type: CREATE, payload: data });
   } catch (error) {
     console.log(error.message);
@@ -75,6 +75,25 @@ export const getSingleMezmur = (id) => async (dispatch) => {
   try {
     const { data } = await api.fetchSingleMezmur(id);
     dispatch({ type: FETCH_ONE, payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+
+export const deleteMezmurAction = (id) => async (dispatch) => {
+  try {
+    await api.deleteMezmur(id);
+    dispatch({ type: DELETE, payload: id });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const updateMezmur = (id, mezmu) => async (dispatch) => {
+  try {
+    const { data } = await api.updatePostMezmur(id, mezmu);
+    dispatch({ type: UPDATE, payload: data });
   } catch (error) {
     console.log(error.message);
   }

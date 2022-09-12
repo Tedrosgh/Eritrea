@@ -6,6 +6,13 @@ const mezmurSchema = new Schema({
     type: String,
     required: true,
   },
+  artist: {
+    type: String
+  },
+  created: {
+    createdBy: String,
+    createdAt: Date
+  },
   langetext: {
     type: String,
     required: true,

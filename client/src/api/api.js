@@ -18,14 +18,18 @@ export const fetchPosts = () => API.get("/posts");
 export const fetchPostsmezmur = () => API.get("/mezmur");
 
 export const createPost = (newPost) => API.post("/posts", newPost);
-export const createPostmezmur = (newPost) => API.post("/mezmur", newPost);
+export const addnMezmur = (newMezmur) => API.post("/mezmur", newMezmur);
 
 export const fetchSingleMezmur = (id) => API.get(`/mezmur/${id}`);
 
 export const updatePost = (id, updatePost) =>
   API.patch(`/posts/${id}`, updatePost);
+export const updatePostMezmur = (id, updateMezmur) =>
+  API.patch(`/mezmur/${id}`, updateMezmur);
 
 export const deletePost = (id) => API.delete(`/posts/${id}`);
+export const deleteMezmur = (id) => API.delete(`/mezmur/${id}`);
+
 
 export const likePost = (id) => API.patch(`/posts/${id}/likepost`);
 

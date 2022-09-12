@@ -12,9 +12,7 @@ const startingState = [{
 const MezmurList = () => {
     const [startState, setStartState] = useState(startingState)
     const { dispatch } = useDispatch();
-    //const { title, langetext } = props;
-   // const mezmurs = useSelector((state)=>(state.postreducer));
-    // console.log(title);
+    
     let { id } = useParams();
     useEffect(()=>{
         //getData();
@@ -28,9 +26,7 @@ const MezmurList = () => {
         <h1>List of Mezmurs</h1>
         
         <div>
-        {/* {startState.map((state)=>(
-        <div key={state._id} > */}
-        {/* {<Mezmur key={startState} {...startState} />} */}
+    
         
         {startState.map((mez)=>{
             <ul style={{color: "yellow", backgroundColor: "green"}} key={mez._id}>

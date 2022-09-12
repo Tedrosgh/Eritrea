@@ -9,6 +9,7 @@ import Mezmur from "./pages/mezmur/Mezmur.js";
 import Add_new_mezmur from "./pages/mezmur/Add_new_mezmur";
 import MezmurList from "./pages/mezmur/MezmurList";
 import SingleMezmur from "./pages/mezmur/SingleMezmur";
+import AllMezmurs from "./pages/mezmur/Mezmur.js";
 
 const App = () => {
   //const [currentId, setCurrentId] = useState(null);
@@ -22,7 +23,7 @@ const App = () => {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/auth" exact component={Auth} />
-          <Route path="/mezmur" exact component={Mezmur} />
+          <Route path="/mezmur" exact component={AllMezmurs} />
           <Route path="/mezmur/addmezmur" exact component={Add_new_mezmur} />
           <Route path="/mezmur/list" exact component={MezmurList}></Route>
           <Route path="/mezmur/:id" exact component={SingleMezmur}></Route>
