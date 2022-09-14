@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { AppBar, Toolbar, Avatar, Button, Typography, Container, Box, Drawer, List } from "@material-ui/core";
+import { AppBar, Toolbar, Avatar, Button, Typography, Container, Box, Drawer, List, useMediaQuery, useTheme, ThemeProvider } from "@material-ui/core";
 import { ListItemButton, ListItemText } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import useStyles from "./stylesNavbar";
@@ -8,7 +8,6 @@ import karte from "../../images/karte.png";
 import logo from "../../images/logo.jpg";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
-
 import decode from "jwt-decode";
 
 const pagesArr = ["Program", "Mezmur", "Finanz", "Predict", "Jugend", "Kinder", "Help?"];
@@ -24,6 +23,10 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
+  const theme = useTheme();
+  console.log(theme);
+  const isMatch = useMediaQuery(theme.breakpoints.down('sm'));
+  console.log(isMatch);
 
   const logout = () => {
     //we need to dispatch an action
@@ -49,87 +52,123 @@ const Navbar = () => {
   return (
     <Container>
       <AppBar className={classes.appBar} position="static" color="inherit">
-        <button onClick={() => setOpen(true)}><MenuIcon style={{ color: "rgba(0,183,255, 1)" }} /></button>
-        <Drawer open={open} onClose={() => setOpen(false)}>
-          <List sx={{ bgcolor: '#1976d2', color: 'white', marginTop: '38PX', fontWeight: 'medium', variant: 'body2', fontSize: 25 }}>
-            {pagesArrD.map((page, index) => (
-              <ListItemButton key={index} onClick={() => setOpen(false)} component={Link} to={`/${page}`} style={{ color: "rgba(0,183,255, 1)", fontWeight: "700" }}>
+        {
+          isMatch ? (
+            <>
+              <Typography><img src={logo} alt="icon" height="70" /></Typography>
 
-                <ListItemText primary={page} />
+              <button onClick={() => setOpen(true)}><MenuIcon style={{ color: "rgba(0,183,255, 1)" }} /></button>
+              <Drawer open={open} onClose={() => setOpen(false)}>
+                <List sx={{ bgcolor: '#1976d2', color: 'white', marginTop: '38PX', fontWeight: 'medium', variant: 'body2', fontSize: 25 }}>
+                  {pagesArrD.map((page, index) => (
+                    <ListItemButton key={index} onClick={() => setOpen(false)} component={Link} to={`/${page}`} style={{ color: "rgba(0,183,255, 1)", fontWeight: "700" }}>
 
-              </ListItemButton>))}
-          </List>
+                      <ListItemText primary={page} />
 
-        </Drawer>
-        <div className={classes.brandContainer}>
-          <Typography
-            component={Link}
-            to="/"
-            className={classes.heading}
-            variant="h5"
-            align="center"
-          >
-            &nbsp; Eritrean full Gospel Cologne &nbsp;
-          </Typography>
-          <img className={classes.image} src={logo} alt="icon" height="140" />
-        </div>
-        <Toolbar className={classes.toolbar}>
-          {user ? (
-            <div className={classes.profile}>
-              <Avatar
-                className={classes.purple}
-                alt={user.result.name}
-                src={user.result.imageUrl}
-              >
-                {user.result.name.charAt(0)}
-              </Avatar>
-              <Typography className={classes.userName} variant="h6">
-                {user.result.name}
-              </Typography>
-              <Button
-                variant="contained"
-                className={classes.logout}
-                color="secondary"
-                onClick={logout}
-              >
-                Logout
-              </Button>
-            </div>
+                    </ListItemButton>))}
+                  <ListItemButton>
+                    <ListItemText>
+                      {user ? (
+                        <div className={classes.profilemobil}>
+                          <Avatar
+                            className={classes.purplemobil}
+                            alt={user.result.name}
+                            src={user.result.imageUrl}
+                          >
+                            {user.result.name.charAt(0)}
+                          </Avatar>
+
+                          <Button
+                            variant="contained"
+                            className={classes.logout}
+                            color="secondary"
+                            onClick={logout}
+                          >
+                            Logout
+                          </Button>
+                        </div>
+                      ) : (
+                        <Button
+                          component={Link}
+                          to="/auth"
+                          variant="contained"
+                          color="primary"
+                        >
+                          Sign In
+                        </Button>
+                      )}
+                    </ListItemText>
+                  </ListItemButton>
+                </List>
+
+              </Drawer>
+            </>
           ) : (
-            <Button
-              component={Link}
-              to="/auth"
-              variant="contained"
-              color="primary"
-            >
-              Sign In
-            </Button>
-          )}
-        </Toolbar>
+            <>
+              <div className={classes.brandContainer}>
+                <Typography
+                  component={Link}
+                  to="/"
+                  className={classes.heading}
+                  variant="h5"
+                  align="center"
+                >
+                  &nbsp; Eritrean full Gospel Cologne &nbsp;
+                </Typography>
+                <img className={classes.image} src={logo} alt="icon" height="140" />
+              </div>
+              <Toolbar className={classes.toolbar}>
+                {user ? (
+                  <div className={classes.profile}>
+                    <Avatar
+                      className={classes.purple}
+                      alt={user.result.name}
+                      src={user.result.imageUrl}
+                    >
+                      {user.result.name.charAt(0)}
+                    </Avatar>
+                    <Typography className={classes.userName} variant="h6">
+                      {user.result.name}
+                    </Typography>
+                    <Button
+                      variant="contained"
+                      className={classes.logout}
+                      color="secondary"
+                      onClick={logout}
+                    >
+                      Logout
+                    </Button>
+                  </div>
+                ) : (
+                  <Button
+                    component={Link}
+                    to="/auth"
+                    variant="contained"
+                    color="primary"
+                  >
+                    Sign In
+                  </Button>
+                )}
+              </Toolbar>
+
+
+
+
+            </>
+          )
+        }
       </AppBar>
-      {/* <AppBar className={classes.appBar} position="relative">
-      <Toolbar> */}
-      {/* <button onClick={()=>setOpen(true)}><MenuIcon /></button>
-      <Drawer open={open} onClose={()=>setOpen(false)}>
-              <List sx={{bgcolor: '#1976d2', color: 'white', marginTop: '38PX', fontWeight: 'medium', variant: 'body2', fontSize: 25}}>
-                {pagesArrD.map((page, index)=>(
-                <ListItemButton key={index} onClick={()=>setOpen(false)} component={Link} to={`/${page}`}>
-                  
-                  <ListItemText primary={page} />
-                
-                </ListItemButton>))}
-              </List> 
-              
-            </Drawer> */}
-      {/* <Box className={classes.profile}>
-          <Link href="/mezmur" underline="none">
-        <Typography>Mezmur</Typography>
-        </Link>
-        <Typography>Finanz</Typography>
-        <Typography>Events</Typography>
-        </Box> */}
-      {/* </Toolbar>
-      </AppBar> */}
+      {isMatch ? (<Typography style={{textAlign: "center", color: "lightblue"}}>For more links press the burger butten</Typography>) : (
+      <Toolbar className={classes.appBarUnten} position="static" color="inherit">
+        {pagesArrD.map((page, index) => (
+          <ListItemButton key={index} component={Link} to={`/${page}`} style={{ color: "rgba(0,183,255, 1)", fontWeight: "700" }}>
+
+            <ListItemText primary={page} />
+
+          </ListItemButton>))}
+      </Toolbar>)
+}
+
     </Container>
   );
 };

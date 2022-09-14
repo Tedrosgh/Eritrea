@@ -85,7 +85,7 @@ const Post = ({ post, setCurrentId }) => {
 
       <div className={classes.details}>
         <Typography variant="body2" color="textSecondary" component="h2">
-          {post.tags.map((tag) => `#${tag} `)}
+          {post.tags.map((tag) => `የሱስ ህያው እዩ! - ${tag} `)}
         </Typography>
       </div>
 
