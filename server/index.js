@@ -12,7 +12,10 @@ dotenv.config();
 app.use(express.json({ limit: "30mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));
 
-app.use(cors());
+const PORT = process.env.PORT || 8000;
+app.use(cors({
+  origin: "http://localhost:3000",
+}));
 
 //http://localhost:5000/posts
 app.get("/", (req, res) => {
@@ -22,8 +25,6 @@ app.get("/", (req, res) => {
 app.use("/posts", postRoutes);
 app.use("/user", userRoutes);
 app.use("/mezmur", mezmursRouter);
-
-const PORT = process.env.PORT || 8000;
 
 mongoose
   .connect(process.env.CONNECTION_URL, {
