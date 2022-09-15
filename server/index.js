@@ -28,7 +28,9 @@ const PORT = process.env.PORT || 8000;
 mongoose
   .connect(process.env.CONNECTION_URL, {
     useNewUrlParser: true,
+    useCreateIndex: true,
     useUnifiedTopology: true,
+    useFindAndModify: false
   })
   .then(() =>
     app.listen(PORT, () =>
