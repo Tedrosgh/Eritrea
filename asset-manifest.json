@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Eritrea/static/css/main.b19fdc2f.chunk.css",
-    "main.js": "/Eritrea/static/js/main.d5d78042.chunk.js",
-    "main.js.map": "/Eritrea/static/js/main.d5d78042.chunk.js.map",
+    "main.js": "/Eritrea/static/js/main.3aed68fc.chunk.js",
+    "main.js.map": "/Eritrea/static/js/main.3aed68fc.chunk.js.map",
     "runtime-main.js": "/Eritrea/static/js/runtime-main.d3a6c862.js",
     "runtime-main.js.map": "/Eritrea/static/js/runtime-main.d3a6c862.js.map",
     "static/js/2.3f7a08e0.chunk.js": "/Eritrea/static/js/2.3f7a08e0.chunk.js",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.d3a6c862.js",
     "static/js/2.3f7a08e0.chunk.js",
     "static/css/main.b19fdc2f.chunk.css",
-    "static/js/main.d5d78042.chunk.js"
+    "static/js/main.3aed68fc.chunk.js"
   ]
 }
