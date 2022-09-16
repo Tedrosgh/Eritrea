@@ -29,7 +29,7 @@ const Post = ({ post, setCurrentId }) => {
   const user = JSON.parse(localStorage.getItem("profile"));
 
   const Likes = () => {
-    if (post.likes.length > 0) {
+    if (post.likes?.length > 0) {
       return post.likes.find(
         (like) => like === (user?.result?.googleId || user?.result?._id)
       ) ? (
@@ -85,7 +85,7 @@ const Post = ({ post, setCurrentId }) => {
 
       <div className={classes.details}>
         <Typography variant="body2" color="textSecondary" component="h2">
-          {post.tags.map((tag) => `የሱስ ህያው እዩ! - ${tag} `)}
+          {post.tags?.map((tag) => `የሱስ ህያው እዩ! - ${tag} `)}
         </Typography>
       </div>
 
